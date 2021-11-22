@@ -82,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               GridView.count(
                 crossAxisCount: 2,
-                mainAxisSpacing: 10,
+                // mainAxisSpacing: 10,
                 padding: const EdgeInsets.all(20),
                 primary: false,
                 shrinkWrap: true,
