@@ -1,3 +1,4 @@
+import 'package:atyrau_hub_hackaton/features/info/auto.dart';
 import 'package:atyrau_hub_hackaton/features/info/info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -12,8 +13,6 @@ class ScanQr extends StatefulWidget {
 }
 
 class _ScanQrState extends State<ScanQr> {
-  String? _scanBarcode;
-
   Future<void> scanQR() async {
     String barcodeScanRes;
     try {
@@ -37,7 +36,8 @@ class _ScanQrState extends State<ScanQr> {
 
   checkingValue(String _scanBarcode) {
     if (_scanBarcode.contains('https') || _scanBarcode.contains('http')) {
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) => Info(urlQRCode: _scanBarcode,)));
+      // Navigator.of(context).push(MaterialPageRoute(builder: (context) => Info(urlQRCode: _scanBarcode,)));
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const AutoPage()));
     } else {
       Fluttertoast.showToast(gravity: ToastGravity.BOTTOM, msg: 'Invalide URL');
     }

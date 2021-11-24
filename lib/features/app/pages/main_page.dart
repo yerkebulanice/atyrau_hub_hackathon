@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -16,8 +15,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String? _scanBarcode;
-
   @override
   void initState() {
     super.initState();
@@ -59,15 +56,6 @@ class _MyHomePageState extends State<MyHomePage> {
       }
   }
 
-  _launchURL(String urlQRCode) async {
-    String url = urlQRCode;
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -82,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               GridView.count(
                 crossAxisCount: 2,
-                // mainAxisSpacing: 10,
+                mainAxisSpacing: 10,
                 padding: const EdgeInsets.all(20),
                 primary: false,
                 shrinkWrap: true,

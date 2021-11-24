@@ -1,9 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:atyrau_hub_hackaton/features/auth/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'features/app/pages/app_page.dart';
-import 'features/app/pages/main_page.dart';
 import 'features/splash/splash_screen.dart';
 
 void main() {
@@ -30,7 +29,7 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Tengizchevroil',
-            home: const App(),
+            home: const LoginPage(),
           );
         }
       },

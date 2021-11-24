@@ -2,6 +2,7 @@
 import 'package:atyrau_hub_hackaton/features/account/pages/account_page.dart';
 import 'package:atyrau_hub_hackaton/features/app/pages/main_page.dart';
 import 'package:atyrau_hub_hackaton/features/app/pages/scan_qr.dart';
+import 'package:atyrau_hub_hackaton/features/info/auto.dart';
 import 'package:flutter/material.dart';
 import 'package:motion_tab_bar/MotionTabBarView.dart';
 import 'package:motion_tab_bar/MotionTabController.dart';
