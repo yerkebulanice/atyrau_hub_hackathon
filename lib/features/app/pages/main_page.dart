@@ -1,11 +1,15 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 import 'dart:io';
 import 'package:atyrau_hub_hackaton/features/info/info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+// import 'package:flutter_mobile_vision/flutter_mobile_vision.dart';
+import 'package:google_ml_kit/google_ml_kit.dart';
+import 'camera_screen.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -15,6 +19,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
   @override
   void initState() {
     super.initState();
@@ -22,6 +27,49 @@ class _MyHomePageState extends State<MyHomePage> {
       WebView.platform = SurfaceAndroidWebView();
     }
   }
+
+  @override
+  void dispose() async {
+    super.dispose();
+  }
+
+  // Future scanText(){
+  //   showDialog(
+  //       context: context,
+  //       builder: (BuildContext context) => Center(
+  //         child: CircularProgressIndicator(),
+  //       )
+  //   );
+  //
+  // }
+
+  // Future getImage() async {
+  //   final pickedFile = await picker.getImage(source: ImageSource.camera);
+  //   setState(() {
+  //     if(pickedFile != null) {
+  //       _image = pickedFile;
+  //     } else {
+  //       print('No image selected');
+  //     }
+  //   });
+  // }
+
+  // _startScan() async {
+  //   List<OcrText> list;
+  //
+  //   try{
+  //     list = await FlutterMobileVision.read(
+  //       waitTap: true,
+  //       fps: 5,
+  //       multiple: true,
+  //     );
+  //     for(OcrText text in list){
+  //       print('Value is: ${text.value}');
+  //     }
+  //   } catch(e) {
+  //     print('Error is: $e');
+  //   }
+  // }
 
   Future<void> scanQR() async {
     String barcodeScanRes;
@@ -39,17 +87,9 @@ class _MyHomePageState extends State<MyHomePage> {
     checkingValue(barcodeScanRes);
   }
 
-  
-
-  @override
-  void dispose (){
-    super.dispose();
-  }
-
   checkingValue(String _scanBarcode) {
       if (_scanBarcode.contains('https') || _scanBarcode.contains('http')) {
         // return _launchURL(_scanBarcode!);
-
         Navigator.of(context).push(MaterialPageRoute(builder: (context) => Info(urlQRCode: _scanBarcode,)));
       } else {
         Fluttertoast.showToast(gravity: ToastGravity.BOTTOM, msg: 'Invalide URL');
@@ -75,8 +115,26 @@ class _MyHomePageState extends State<MyHomePage> {
                 primary: false,
                 shrinkWrap: true,
                 children:  [
-                  TextButton(onPressed: (){},child: Text('Generate QR')),
-                  TextButton(onPressed: (){scanQR();},child: Text('Scan QR')),
+                  TextButton(
+                      onPressed: (){
+                        Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => CameraScreen()));
+                      },
+                      child: Column(
+                        children: [
+                          Icon(Icons.search, size: 40,),
+                          Text('Распознать номер машины',textAlign: TextAlign.center,),
+                        ],
+                      ),
+                  ),
+                  TextButton(
+                      onPressed: (){scanQR();},
+                      child: Column(
+                        children: [
+                          Icon(Icons.qr_code_scanner,size: 40,),
+                          Text('Сканировать QR'),
+                        ],
+                      )
+                  ),
                 ],
               ),
             ],

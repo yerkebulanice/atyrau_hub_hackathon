@@ -3,6 +3,9 @@
    <application
         android:label="atyrau_hub_hackaton"
         android:icon="@mipmap/ic_launcher">
+       <meta-data
+           android:name="com.google.mlkit.vision.DEPENDENCIES"
+           android:value="ica" />
        <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -32,6 +35,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity android:name="io.github.edufolly.fluttermobilevision.ocr.OcrCaptureActivity" />
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data
@@ -39,4 +44,6 @@
             android:value="2" />
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-permission android:name="android.permission.CAMERA" />
 </manifest>
