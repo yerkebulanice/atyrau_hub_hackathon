@@ -3,6 +3,7 @@
 import 'package:atyrau_hub_hackaton/features/app/pages/app_page.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:flutter_mobile_vision/flutter_mobile_vision.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -13,6 +14,16 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _isLoggedIn = false;
+  bool isInitialized = false;
+
+  @override
+  void initState() {
+    FlutterMobileVision.start().then((value){
+      isInitialized = true;
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,12 +1,21 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:atyrau_hub_hackaton/features/auth/pages/login_page.dart';
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'features/splash/splash_screen.dart';
+// import 'camera_screen.dart';
 
-void main() {
-  WidgetsFlutterBinding.ensureInitialized();
+List<CameraDescription> cameras = [];
+
+Future<void> main() async {
+  try {
+    WidgetsFlutterBinding.ensureInitialized();
+    cameras = await availableCameras();
+  } on CameraException catch (e) {
+    debugPrint('CameraError: ${e.description}');
+  }
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
       overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top]);
   runApp(const MyApp());

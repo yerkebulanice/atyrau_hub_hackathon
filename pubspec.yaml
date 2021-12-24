@@ -19,6 +19,11 @@ dependencies:
   webview_flutter: ^2.3.1
   motion_tab_bar: ^0.1.5
   modal_progress_hud_nsn: ^0.1.0-nullsafety-1
+  flutter_mobile_vision: ^0.1.4+1
+  google_ml_kit: ^0.7.3
+  image_picker: ^0.8.4+4
+#  firebase_ml_vision: ^0.12.0+3
+  camera: ^0.9.4+5
 
 dev_dependencies:
   flutter_test:
